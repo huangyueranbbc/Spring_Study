@@ -4,6 +4,7 @@ package cn.排序;
  * @author Administrator
  *	冒泡
  */
+//啊啊啊啊啊
 public class 冒泡
 {
 	public static void main(String[] args)
