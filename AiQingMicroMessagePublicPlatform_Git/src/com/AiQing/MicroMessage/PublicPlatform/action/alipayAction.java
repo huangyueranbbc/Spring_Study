@@ -6,6 +6,8 @@ import com.AiQing.MicroMessage.PublicPlatform.dto.AlipayOrderDto;
 public class alipayAction extends ModelDrivenBaseAction<AlipayOrderDto>{
 	/**
 	 * 确认支付宝并购买
+	 * 在GIT中进行提交
+	 * https://github.com/huangyueranbbc/huangyueranck.git
 	 * */
 	public String buy() throws Exception {
 		System.out.println(modeldto.toString());
