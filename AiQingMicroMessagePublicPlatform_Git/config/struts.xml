@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.action.extension" value="action,,"></constant>
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.multipart.maxSize" value="1024352351525242880" />
+
+	<package name="action" namespace="/" extends="struts-default">
+
+		<!-- 微信接口 -->
+		<action name="interfaceAction_*"
+			class="com.AiQing.MicroMessage.PublicPlatform.action.interfaceAction"
+			method="{1}">
+			<result name="success">/index.jsp</result>
+			<result name="test">/WEB-INF/jsp/index.jsp</result>
+		</action>
+
+		<!-- 企业网站 -->
+		<action name="homeAction_*"
+			class="com.AiQing.MicroMessage.PublicPlatform.action.homeAction"
+			method="{1}">
+			<result name="index">/WEB-INF/jsp/艾清官网.jsp</result>
+			<result name="cpjs">/WEB-INF/jsp/产品介绍.jsp</result>
+			<result name="cpxc">/WEB-INF/jsp/产品选材.jsp</result>
+			<result name="gsyj">/WEB-INF/jsp/公司愿景.jsp</result>
+			<result name="gszl">/WEB-INF/jsp/公司战略.jsp</result>
+			<result name="gszz">/WEB-INF/jsp/公司执照.jsp</result>
+			<result name="gbhb">/WEB-INF/jsp/国标行标.jsp</result>
+			<result name="qygk">/WEB-INF/jsp/企业概况.jsp</result>
+			<result name="scqx">/WEB-INF/jsp/生产前线.jsp</result>
+			<result name="sysj">/WEB-INF/jsp/实验数据.jsp</result>
+			<result name="tdry">/WEB-INF/jsp/团队荣誉.jsp</result>
+			<result name="gylc">/WEB-INF/jsp/工艺流程.jsp</result>
+			<result name="zlzs">/WEB-INF/jsp/专利证书.jsp</result>
+			<result name="kfrx">/WEB-INF/jsp/客服热线.jsp</result>
+			<result name="qqkf">/WEB-INF/jsp/QQ客服.jsp</result>
+			<result name="gfwx">/WEB-INF/jsp/官方微信.jsp</result>
+			<result name="jqrkf">/WEB-INF/jsp/机器人客服.jsp</result>
+			<result name="cpdg">/WEB-INF/jsp/产品订购.jsp</result>
+			<result name="hyfxjcptd">/WEB-INF/jsp/行业分析及产品特点.jsp</result>
+			<result name="schgfx">/WEB-INF/jsp/市场宏观分析.jsp</result>
+			<result name="syyq">/WEB-INF/jsp/实验仪器.jsp</result>
+		</action>
+
+		<!-- 处理订单 -->
+		<action name="orderAction_*"
+			class="com.AiQing.MicroMessage.PublicPlatform.action.orderAction"
+			method="{1}">
+			<result name="qrdd">/WEB-INF/jsp/确认订单.jsp</result>
+			<result name="xzzffs">/WEB-INF/jsp/选择支付方式.jsp</result>
+			<result name="zfbtest">/支付接口界面.jsp</result>
+			<result name="alipaybuy" type="redirect">/alipayapi.jsp</result>
+		</action>
+
+		<!-- 支付宝管理 -->
+		<action name="alipayAction_*"
+			class="com.AiQing.MicroMessage.PublicPlatform.action.alipayAction"
+			method="{1}">
+			<result name="buy">/alipayapi.jsp</result>
+		</action>
+
+	</package>
+
+</struts>

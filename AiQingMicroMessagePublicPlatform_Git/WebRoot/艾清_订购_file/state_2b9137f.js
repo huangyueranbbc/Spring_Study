@@ -1,0 +1,1 @@
+define("common:widget/dep/moye/helper/state.js",function(t,e,s){var e={};e.is=function(t){return!!this.states[t]},e.addState=function(t){this.states[t]=!0},e.removeState=function(t){delete this.states[t]},e.toggleState=function(t,e){e="boolean"==typeof e?e:!this.is(t),this[e?"addState":"removeState"](t)},s.exports=e});

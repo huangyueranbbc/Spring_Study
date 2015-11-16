@@ -1,0 +1,60 @@
+.logo {
+	WIDTH: 65px; FLOAT: left; HEIGHT: 14px
+}
+.righttop {
+	
+}
+.center_right {
+	BACKGROUND-REPEAT: no-repeat
+}
+#leftad {
+	POSITION: relative; BACKGROUND: url(images/leftad.png) no-repeat; COLOR: #06f
+}
+#rightad {
+	POSITION: relative; BACKGROUND: url(images/rightad.png) no-repeat; COLOR: #000
+}
+#history {
+	BORDER-BOTTOM: #bcc6dd 1px solid; BORDER-LEFT: #bcc6dd 1px solid; BORDER-TOP: #bcc6dd 1px solid; BORDER-RIGHT: #bcc6dd 1px solid
+}
+.center_left3 {
+	BORDER-BOTTOM: #bcc6dd 1px solid; BORDER-LEFT: #bcc6dd 1px solid; BACKGROUND-COLOR: #fff; BORDER-TOP: #bcc6dd 1px solid; BORDER-RIGHT: #bcc6dd 1px solid
+}
+.interval {
+	WIDTH: 2px; DISPLAY: block; BACKGROUND: url(images/interval.png) no-repeat; FLOAT: left; HEIGHT: 63px
+}
+#chatbox {
+	BACKGROUND: url(images/point.png)
+}
+.content_left_center {
+	WIDTH: 10px; BACKGROUND: url(images/left.png) repeat-y; FLOAT: left; HEIGHT: 100%; MARGIN-LEFT: 1px
+}
+.content_right_center {
+	WIDTH: 10px; BACKGROUND: url(images/right.png) repeat-y; FLOAT: right; HEIGHT: 100%; MARGIN-RIGHT: 0px
+}
+.content_top {
+	WIDTH: 100%; BACKGROUND: url(images/top_center.png) repeat-x; HEIGHT: 80px
+}
+.content_top_left {
+	POSITION: relative; MARGIN-TOP: 0px; WIDTH: 10px; BACKGROUND: url(images/top_left.png) no-repeat; FLOAT: left; HEIGHT: 80px; MARGIN-LEFT: -10px; _margin-left: -10px
+}
+.content_top_right {
+	POSITION: relative; WIDTH: 10px; BACKGROUND: url(images/top_right.png) no-repeat; FLOAT: right; HEIGHT: 80px; MARGIN-RIGHT: -10px; _margin-right: 5px
+}
+.content_bottom {
+	POSITION: absolute; MARGIN-TOP: 10px; WIDTH: 100%; BOTTOM: 1px; BACKGROUND: url(images/bottom_center.png) repeat-x; HEIGHT: 10px; _margin-bottom: -4px
+}
+.content_bottom_left {
+	WIDTH: 10px; BACKGROUND: url(images/bottom_left.png) no-repeat; FLOAT: left; HEIGHT: 10px; MARGIN-LEFT: 1px; _margin-left: 0px
+}
+.content_bottom_right {
+	WIDTH: 10px; BACKGROUND: url(images/bottom_right.png) no-repeat; FLOAT: right; HEIGHT: 10px
+}
+#enter {
+	BACKGROUND: url(images/send.png) no-repeat 0px 0px
+}
+#exitChat {
+	BACKGROUND: url(images/close.png) no-repeat 0px 0px
+}
+#popDiv BUTTON.button {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; LINE-HEIGHT: 24px; WIDTH: 80px; BACKGROUND: url(images/button.gif) no-repeat center 50%; COLOR: #1571b3; BORDER-TOP: medium none; BORDER-RIGHT: medium none
+}

@@ -1,0 +1,135 @@
+.main {
+	width: 1214px;
+}
+.part {
+	padding: 22px 16px 4px 22px; border: 1px solid rgb(234, 226, 200); height: 210px; overflow: hidden; margin-bottom: 15px; background-color: rgb(255, 255, 255);
+}
+.indexdest .cont img {
+	width: 240px; height: 160px;
+}
+.mod {
+	border: currentColor; float: left;
+}
+.mhd h3 {
+	background: url("../images/index_mhd.png") no-repeat 0px 0px; width: 140px; height: 22px; float: left;
+}
+.mhd .more {
+	margin: 2px 0px 0px;
+}
+.mbd {
+	padding: 22px 0px 0px;
+}
+.mbd p {
+	color: rgb(125, 125, 125);
+}
+.subnav li {
+	padding-right: 10px; margin-right: 10px; border-right-color: rgb(125, 125, 125); border-right-width: 1px; border-right-style: solid; float: left;
+}
+.subnav li a {
+	color: rgb(125, 125, 125); font-size: 16px;
+}
+.subnav .last {
+	margin: 0px; border: currentColor;
+}
+.subnav li .hover {
+	color: rgb(82, 149, 0);
+}
+.tab-cont .cont {
+	display: none;
+}
+.tab-cont .hover {
+	display: block;
+}
+.picShow {
+	margin: 25px 0px 5px; width: 1214px; height: 410px; position: relative;
+}
+.ps-cont {
+	height: 410px;
+}
+.ps-cont img {
+	width: 1210px; height: 410px;
+}
+.ps-tnav {
+	padding: 0px; left: 574px; top: 378px; position: absolute;
+}
+.mod-rdjz {
+	width: 290px; margin-right: 30px;
+}
+.mod-rdjz .mhd {
+	position: relative;
+}
+.mod-rdjz .subnav {
+	top: 0px; right: 0px; position: absolute;
+}
+.mod-rdjz .art-list {
+	margin-bottom: 15px;
+}
+.mod-rdjz .art-list li {
+	background: url("../images/icon.png") no-repeat 0px; line-height: 25px; padding-left: 15px; position: relative;
+}
+.mod-rdjz .art-list a {
+	color: rgb(125, 125, 125);
+}
+.mod-rdjz .art-list span {
+	color: rgb(125, 125, 125);
+}
+.mod-rdjz .art-list span {
+	top: 0px; right: 0px; display: block; position: absolute;
+}
+.mod-rdjz .mbd .more {
+	padding-left: 15px;
+}
+.mod-rdzt {
+	width: 315px; margin-right: 35px;
+}
+.mod-rdzt .mhd h3 {
+	background-position: 0px -23px;
+}
+.mod-rdzt .mbd {
+	width: 315px;
+}
+.mod-rdzt .pic-list li {
+	padding-bottom: 15px;
+}
+.mod-rdzt .pic {
+	width: 128px; padding-right: 15px; float: left;
+}
+.mod-rdzt .pic img {
+	width: 128px; height: 61px;
+}
+.mod-rdzt .cont {
+	overflow: hidden; zoom: 1;
+}
+.mod-dszdh {
+	width: 218px; margin-right: 30px;
+}
+.mod-dszdh .mhd h3 {
+	background-position: 0px -46px;
+}
+.mod-dszdh .pic {
+	height: 61px; overflow: hidden; margin-bottom: 10px;
+}
+.mod-dszdh .pic img {
+	width: 218px; height: 61px;
+}
+.mod-promo {
+	width: 248px;
+}
+.mobile {
+	background: url("../images/mobile_bg.png") repeat-x 0px 0px; padding: 0px 0px 1%; left: 0px; width: 100%; bottom: 0px; position: fixed; z-index: 9999;
+}
+.mobile p {
+	padding: 3% 1% 2%;
+}
+.mobile p img {
+	width: 100%;
+}
+.mobile .tips {
+	margin-left: 5%; vertical-align: middle; float: left;
+}
+.mobile p a {
+	text-decoration: none; float: left; display: inline-block;
+}
+.mobile .close {
+	margin: 0px 2% 0px 0px; text-align: right; font-style: normal; vertical-align: middle; float: right; display: inline-block; cursor: pointer;
+}

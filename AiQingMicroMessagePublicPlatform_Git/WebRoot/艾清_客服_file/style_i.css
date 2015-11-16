@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*-----联系我们-----*/
+.lx{width:100%; height:100%; overflow:hidden;float:left; margin:10px auto 0 auto; padding-bottom:10px; padding-top:8px;border-radius:16px; border:1px solid #dcdedd;background:#FFF;box-shadow:0px 2px 0px #b0b2b1;}
+.lx p strong{color:#333333; font-weight:normal;}
+.lx p{font-size:16px; color:#a7a7a7; line-height:24px;padding:0 10px;}
+.lx p a:link,.lx p a:visited{color:#59DB54;}
+.lx p a:hover,.lx p a:active{color:#59DB54; text-decoration:none;} 
+.lx p img{ width:74px; height:24px; border:0px; vertical-align:middle;}
+.ht_68{ width:100%;clear:both;height:68px;}
+.ls_3{letter-spacing:5px;}
