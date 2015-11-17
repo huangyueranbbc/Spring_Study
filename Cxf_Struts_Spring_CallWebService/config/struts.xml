@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.action.extension" value="action,,"></constant>
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.multipart.maxSize" value="1024352351525242880" />
+
+	<package name="action" namespace="/" extends="struts-default">
+		<action name="catAction" class="com.hyr.cxf.action.CatAction">
+			<result name="success">/index.jsp</result>
+		</action>
+	</package>
+
+</struts>
