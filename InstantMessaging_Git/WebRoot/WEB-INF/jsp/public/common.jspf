@@ -1,0 +1,29 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<base href="<%=basePath%>">
+
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<script language="javascript" src="<%=basePath%>js/page/pageCommon.js"></script>
+<script language="javascript" src="<%=basePath%>js/page/PageUtils.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="<%=basePath%>css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="<%=basePath%>css/fullcalendar.css" />
+<link rel="stylesheet" href="<%=basePath%>css/matrix-style.css" />
+<link rel="stylesheet" href="<%=basePath%>css/matrix-media.css" />
+<link href="<%=basePath%>font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
+<link rel="stylesheet" href="<%=basePath%>css/jquery.gritter.css" />
+

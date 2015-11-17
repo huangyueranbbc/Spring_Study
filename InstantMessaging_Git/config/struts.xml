@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.action.extension" value="action,,"></constant>
+	<constant name="struts.ui.theme" value="simple"></constant>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.multipart.maxSize" value="1024352351525242880" />
+
+	<package name="action" namespace="/" extends="struts-default">
+		<interceptors>
+			<!-- 声明一个拦截器 -->
+			<interceptor name="checkLogin"
+				class="com.Hubei.Polytechnic.University.IM.interceptor.Interceptor"></interceptor>
+		</interceptors>
+
+		<!-- 全局result -->
+		<global-results>
+			<result name="loginUI">/WEB-INF/jsp/adminAction/loginUI.jsp</result>
+			<result name="jpushexception" type="redirectAction">messagePushAction_sendUI
+			</result>
+			<result name="exception">/error.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping result="exception" exception="java.lang.Exception">
+			</exception-mapping>
+		</global-exception-mappings>
+
+		<!-- 用户管理 -->
+		<action name="userAction_*"
+			class="com.Hubei.Polytechnic.University.IM.action.UserAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
+			<result name="logout">/WEB-INF/jsp/userAction/logout.jsp</result>
+			<result name="setPrivilegeUI">/WEB-INF/jsp/userAction/setPrivilegeUI.jsp
+			</result>
+			<result name="tolist" type="redirectAction">userAction_list</result>
+			<result name="show">/WEB-INF/jsp/userAction/show.jsp</result>
+			<interceptor-ref name="checkLogin"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<!-- 主题管理 -->
+		<action name="themeAction_*"
+			class="com.Hubei.Polytechnic.University.IM.action.ThemeAction"
+			method="{1}">
+			<result name="list">/WEB-INF/jsp/themeAction/list.jsp</result>
+			<result name="showtype">/WEB-INF/jsp/themeAction/listThemeType.jsp
+			</result>
+			<result name="tolist" type="redirectAction">themeAction_list</result>
+			<result name="show">/WEB-INF/jsp/themeAction/show.jsp</result>
+			<interceptor-ref name="checkLogin"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<!-- 主题类型管理 -->
+		<action name="typeAction_*"
+			class="com.Hubei.Polytechnic.University.IM.action.TypeAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/typeAction/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/typeAction/addUI.jsp</result>
+			<result name="updateUI">/WEB-INF/jsp/typeAction/updateUI.jsp</result>
+			<result name="tolist" type="redirectAction">typeAction_list</result>
+			<interceptor-ref name="checkLogin"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<!-- 回复管理 -->
+		<action name="replyAction_*"
+			class="com.Hubei.Polytechnic.University.IM.action.ReplyAction"
+			method="{1}">
+			<interceptor-ref name="checkLogin"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<!-- 管理员管理 -->
+		<action name="adminAction_*"
+			class="com.Hubei.Polytechnic.University.IM.action.AdminAction"
+			method="{1}">
+			<result name="toindex" type="redirectAction">homeAction_index</result>
+			<result name="logout">/WEB-INF/jsp/adminAction/loginUI.jsp</result>
+			<result name="show">/WEB-INF/jsp/adminAction/show.jsp</result>
+			<result name="jsonexception" type="redirectAction">adminAction_show</result>
+		</action>
+
+		<!-- 首页管理 -->
+		<action name="homeAction_*" class="homeAction" method="{1}">
+			<result name="{1}">/WEB-INF/jsp/homeAction/{1}.jsp</result>
+			<interceptor-ref name="checkLogin"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<!-- 消息推送管理 -->
+		<action name="messagePushAction_*"
+			class="com.Hubei.Polytechnic.University.IM.Push.messagePushAction"
+			method="{1}">
+			<result name="sendUI">/WEB-INF/jsp/messagePushAction/sendMessageUI.jsp
+			</result>
+			<result name="tosendUI" type="redirectAction">messagePushAction_sendUI</result>
+			<exception-mapping result="jpushexception"
+				exception="java.lang.RuntimeException">
+			</exception-mapping>
+			<interceptor-ref name="checkLogin"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<!-- 软件版本管理 针对管理员的上传下载 -->
+		<action name="versionAction_*" class="versionAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/versionAction/list.jsp</result>
+			<result name="addUI">/WEB-INF/jsp/versionAction/addUI.jsp</result>
+			<result name="tolist" type="redirectAction">versionAction_list</result>
+			<result type="stream" name="download">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="%{fileName}.apk"</param>
+				<param name="contentLength">%{fileLength}</param>
+			</result>
+			<interceptor-ref name="checkLogin"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+
+		<!-- 主页软件最新版下载 针对用户的下载 -->
+		<action name="downloadOrUpload_*" class="downloadOrUpload"
+			method="{1}">
+			<result type="stream" name="download">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">inputStream</param>
+				<param name="contentDisposition">attachment;filename="%{fileName}.apk"</param>
+				<param name="contentLength">%{fileLength}</param>
+			</result>
+		</action>
+
+	</package>
+
+</struts>
