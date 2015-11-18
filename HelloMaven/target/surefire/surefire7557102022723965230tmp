@@ -1,0 +1,5 @@
+#surefire
+#Wed Nov 18 17:18:17 CST 2015
+user.dir=C\:\\Workspaces\\HelloMaven
+localRepository=H\:\\maven\\repository
+basedir=C\:\\Workspaces\\HelloMaven
