@@ -1,0 +1,120 @@
+
+if (!Live800Robot) {
+	var Live800Robot = {};
+}
+if (!Live800Robot.topbanner) {
+	Live800Robot.topbanner = function () {
+	};
+}
+Live800Robot.topbanner.showFunc = function () {
+	var funcString = "<div class=\"leftFunc\" style=\"display: none;\" title=\"" + Live800Robot.lan.localRes.morefunction + "\" id=\"leftfunctions\"><a href=\"#\" onClick=\"Live800Robot.topbanner.lefFunc();\"><img src=\"" + Live800Robot.param.robotUrl + "chatClient/chat/img/leftF.png\"/></a></div>";
+	var funcNum = 0;
+	funcString += "<div class=\"topItemsContainer\" style=\"display: none;\" sel=\"0\"><span class=\"interval\"></span><span class=\"containerItemsb\"><span id=\"intelligentSearch\"></span><span class=\"containerItemst\">" + Live800Robot.lan.localRes.intellgentsearch + "</span></span></div>";
+	if (Live800Robot.param.udButtonOpen == "true") {
+		var json = eval("(" + Live800Robot.param.udButtonJson + ")");
+		for (var btn in json) {
+			funcString += "<div class=\"topItemsContainer\" style=\"display: none;\" sel=\"0\"><span class=\"interval\"></span><span class=\"containerItemsb\"><span id=\"udButton" + json[btn]["id"] + "\" style=\"display:block;background:url(" + Live800Robot.util.URLDecode(json[btn]["pic"]) + ") no-repeat;background-position:14px 0px;width:68px;height:48px;\"></span><span class=\"containerItemst\">" + Live800Robot.util.URLDecode(json[btn]["name"]) + "</span></span></div>";
+		}
+	}
+	funcString += " <div class=\"rightFunc\" style=\"display: none;\" sel=\"0\" title=\"" + Live800Robot.lan.localRes.morefunction + "\" id=\"rightfunctions\"><a href=\"#\" onClick=\"Live800Robot.topbanner.rightFunc();\" ><img src=\"" + Live800Robot.param.robotUrl + "chatClient/chat/img/rightF.png\"/></a></div><div class=\"clo\" style=\"display: none;\" sel=\"0\"></div>";
+	var d = document, element = d.getElementById("functionContainer");
+	element.innerHTML = funcString;
+	var elements = element.getElementsByTagName("div");
+	if (elements.length < 9) {
+		for (var i = 1, lenth = elements.length - 2; i < lenth; i++) {
+			elements[i].style.display = "";
+			elements[1].getElementsByTagName("span")[0].style.display = "none";
+		}
+	} else {
+		if (elements.length > 8) {
+			for (var i = 1, lenth = 6; i < lenth; i++) {
+				elements[i].style.display = "";
+			}
+			elements[1].getElementsByTagName("span")[0].style.display = "none";
+			elements[5].setAttribute("sel", "1");
+			elements[elements.length - 2].style.display = "";
+		}
+	}
+	if (navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE6.0") {
+		DD_belatedPNG.fix("#selfSeachService, #intelligentSearch");
+		if (Live800Robot.param.udButtonOpen == "true") {
+			var json = eval("(" + Live800Robot.param.udButtonJson + ")");
+			var i = 0;
+			var udIds = "";
+			for (var btn in json) {
+				i++;
+				if (i == json.length || json.length == 1) {
+					break;
+				}
+				if ((Live800Robot.util.URLDecode(json[btn]["pic"])).indexOf(".png") != -1) {
+					DD_belatedPNG.fix("#udButton" + json[btn]["id"] + "");
+				}
+			}
+			if (json[json.length - 1].pic.indexOf(".png") != -1) {
+				var lastid = "#udButton" + json[json.length - 1].id;
+				setTimeout(" DD_belatedPNG.fix('" + lastid + "')", 10);
+			}
+		}
+	}
+	Live800Robot.topbanner.FuncEvent();
+};
+Live800Robot.topbanner.rightFunc = function () {
+	var g = document, c = g.getElementById("rightfunctions"), e = c.parentNode, c = g.getElementById("functionContainer"), f = c.getElementsByTagName("div");
+	var a;
+	for (var b = 0; b < f.length; b++) {
+		if (f[b].getAttribute("sel") == 1) {
+			a = b;
+			f[b].setAttribute("sel", "0");
+		}
+	}
+	f[a + 1].setAttribute("sel", "1");
+	f[0].style.display = "";
+	f[a - 4].style.display = "none";
+	f[a - 3].getElementsByTagName("span")[0].style.display = "none";
+	f[a - 2].getElementsByTagName("span")[0].style.display = "";
+	f[a + 1].style.display = "";
+	a += 1;
+	if (a == f.length - 3) {
+		f[f.length - 2].style.display = "none";
+	}
+};
+Live800Robot.topbanner.lefFunc = function () {
+	var g = document, c = g.getElementById("leftfunctions"), e = c.parentNode, c = g.getElementById("functionContainer"), f = c.getElementsByTagName("div");
+	var a;
+	for (var b = 0; b < f.length; b++) {
+		if (f[b].getAttribute("sel") == 1) {
+			a = b;
+			f[b].setAttribute("sel", "0");
+		}
+	}
+	f[a - 1].setAttribute("sel", "1");
+	f[f.length - 2].style.display = "";
+	f[a].style.display = "none";
+	f[a - 5].getElementsByTagName("span")[0].style.display = "none";
+	f[a - 4].getElementsByTagName("span")[0].style.display = "";
+	f[a - 5].style.display = "";
+	a = a - 1;
+	if (a == 5) {
+		f[0].style.display = "none";
+	}
+};
+Live800Robot.topbanner.FuncEvent = function () {
+	if (Live800Robot.param.udButtonOpen == "true") {
+		var json = eval("(" + Live800Robot.param.udButtonJson + ")");
+		for (var btn in json) {
+			var udButtonId = json[btn]["id"];
+			var lin = Live800Robot.util.URLDecode(json[btn]["link"]);
+			JRobot("#udButton" + json[btn]["id"]).click((function (udButtonId, lin) {
+				return function () {
+					var img = new Image();
+					img.src = Live800Robot.param.robotUrl + "common?cmd=userDefinedClick&configId=" + udButtonId + "&tm=" + new Date().getTime();
+					window.open(lin);
+				};
+			})(udButtonId, lin));
+		}
+	}
+	JRobot("#intelligentSearch").click(function () {
+		window.open(Live800Robot.param.searchLink);
+	});
+};
+

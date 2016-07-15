@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.1.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+     <!-- 开启spring注解 -->
+     <context:annotation-config></context:annotation-config>
+     <!-- 开启sprin自动扫描包的组件 -->
+     <context:component-scan base-package="com.hyr"></context:component-scan>
+     
+    <bean id="myDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    	<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    	<property name="url" value="jdbc:mysql://localhost:3306/admin"/>
+    	<property name="username" value="root"/>
+    	<property name="password" value="666666"/>
+	</bean>
+     <bean name="mySessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="myDataSource"/>
+        <!--往annotatedClasses提供写了注解的类 让spring知道哪些类写了注解  -->
+    <!--     <property name="annotatedClasses">
+            <list>
+                <value>com.hyr.model.User</value>
+                <value>com.hyr.model.Log</value>
+            </list>
+        </property> -->
+        <property name="packagesToScan">
+            <list>
+                <value>com.hyr.model</value>
+            </list>
+       </property>
+        <property name="hibernateProperties">
+           <props>
+            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+            <prop key="hibernate.connection.pool_size">1</prop>
+            <prop key="hibernate.show_sql">true</prop>
+            <prop key="hibernate.format_sql">true</prop>
+            <prop key="hibernate.hibernate.hbm2ddl.auto">create</prop>
+        </props>
+        </property>
+     </bean>
+     
+     <!-- 配置事务管理  -->   
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>
+	<!-- 配置一个aop进行拦截 添加一个建议 -->
+	<aop:config>
+		<aop:pointcut expression="execution(public * com.hyr.service..*.*(..))"  id="serviceAOP"/>
+		<aop:advisor advice-ref="关于事务的建议" pointcut-ref="serviceAOP"/>
+	</aop:config>
+	<!-- 配置一个关于事务的建议，需要使用已配好的事务，然后添加到aop中 -->
+	<tx:advice id="关于事务的建议"	 transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="add*" isolation="READ_UNCOMMITTED" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+     
+</beans>

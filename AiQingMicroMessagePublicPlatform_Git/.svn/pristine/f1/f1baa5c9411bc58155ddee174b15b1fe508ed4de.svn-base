@@ -1,0 +1,4 @@
+mysql.jdbcUrl=jdbc:mysql://ftp.x02.11156.net/fayvsjay?characterEncoding=utf8
+mysql.driverClass=com.mysql.jdbc.Driver
+mysql.username=fayvsjay
+mysql.password=FB088A03F8b99a

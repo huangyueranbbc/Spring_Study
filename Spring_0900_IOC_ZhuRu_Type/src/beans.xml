@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="u" class="com.hyr.dao.implement.UserDAOORACLEImplement" />
+	<bean id="userService" class="com.hyr.service.UserService"  init-method="gamestrat" destroy-method="gameover" scope="prototype">
+		<!-- <property name="userDAO" ref="u" /> -->
+		<constructor-arg index="0">
+			<ref  bean="u"/>
+		</constructor-arg>
+		<constructor-arg index="1"><bean class="com.hyr.dao.implement.UserDAOJDBCImplement"></bean></constructor-arg>
+	</bean> 
+</beans>

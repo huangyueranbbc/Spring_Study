@@ -7,7 +7,7 @@ public class RMB
 
 	public static void main(String[] args)
 	{
-		System.out.println(rum(1356389123));
+		System.out.println(rum(1356389103));
 	}
 
 	private static String rum(int money)

@@ -1,0 +1,162 @@
+* {
+	PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; LIST-STYLE-IMAGE: none; PADDING-TOP: 0px
+}
+HTML {
+	HEIGHT: 100%; OVERFLOW: hidden
+}
+BODY {
+	HEIGHT: 100%; OVERFLOW: hidden
+}
+.top {
+	POSITION: absolute; RIGHT: 10px; TOP: 0px; LEFT: 10px
+}
+.side {
+	POSITION: absolute; TOP: 17px; LEFT: 0px
+}
+.main {
+	POSITION: absolute; BACKGROUND-COLOR: #fff; BOTTOM: 0px; RIGHT: 0px; TOP: 17px
+}
+.bottom {
+	POSITION: absolute; BOTTOM: 1px; HEIGHT: 120px; LEFT: 0px
+}
+.center {
+	POSITION: absolute; BOTTOM: 10px; RIGHT: 10px; TOP: 84px; LEFT: 10px
+}
+.main IFRAME {
+	WIDTH: 100%; HEIGHT: 100%
+}
+BODY {
+	MIN-WIDTH: 234px; MARGIN: 0px auto; WIDTH: 100%; FONT-FAMILY: "ËÎÌו", "MS Gothic", "Times New Roman", "PMingLiU"; HEIGHT: 100%; FONT-SIZE: 12px; mso-ascii-theme-font: minor-fareast
+}
+.content {
+	MARGIN: 0px; WIDTH: 100%; HEIGHT: 100%; OVERFLOW: hidden
+}
+.top {
+	WIDTH: 100%; FLOAT: left; HEIGHT: 80px
+}
+.lefttop {
+	Z-INDEX: 100; POSITION: absolute; WIDTH: 66px; FLOAT: left; HEIGHT: 24px
+}
+.righttop {
+	MARGIN-TOP: 20px; WIDTH: 66px; FLOAT: right; HEIGHT: 24px; MARGIN-RIGHT: 10px
+}
+.lefttop_top1 {
+	WIDTH: 250px; HEIGHT: 0px; PADDING-TOP: 0px
+}
+.lefttop_top2 {
+	Z-INDEX: 100; POSITION: absolute; WIDTH: 500px; DISPLAY: inline; HEIGHT: 80px; _margin-top: -10px
+}
+IMG {
+	BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-TOP: medium none; BORDER-RIGHT: medium none
+}
+.blar {
+	PADDING-LEFT: 20px; WIDTH: 10px
+}
+.clo {
+	CLEAR: both
+}
+.center_left {
+	TEXT-ALIGN: center; WIDTH: 100%; HEIGHT: 100%
+}
+.center_left1 {
+	MIN-WIDTH: 100px; WIDTH: 100%; WHITE-SPACE: nowrap; HEIGHT: 100%
+}
+.center_left2 {
+	PADDING-LEFT: 0px; WIDTH: 100%; HEIGHT: 22px; _height: 27px; _margin-top: 4px; _line-height: 27px
+}
+.center_left3 {
+	WIDTH: 100%; HEIGHT: 100px; MARGIN-LEFT: 0px; _height: 95px
+}
+TEXTAREA {
+	OVERFLOW-Y: hidden; BACKGROUND-COLOR: #fff
+}
+.sicons {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; DISPLAY: inline; FLOAT: left; PADDING-TOP: 5px
+}
+.center_right {
+	TEXT-ALIGN: center; BACKGROUND-COLOR: #fff; MARGIN-TOP: 0px; WIDTH: 149px; FLOAT: left; HEIGHT: 100%
+}
+.left_buts {
+	MARGIN-TOP: 0px
+}
+.leftad {
+	TEXT-ALIGN: center; LINE-HEIGHT: 24px; MARGIN-TOP: -24px; WIDTH: 68px; FLOAT: left; HEIGHT: 24px; MARGIN-LEFT: 8px; CURSOR: pointer
+}
+.rightad {
+	TEXT-ALIGN: center; LINE-HEIGHT: 24px; MARGIN-TOP: -24px; WIDTH: 68px; PADDING-RIGHT: 5px; FLOAT: right; HEIGHT: 24px; CURSOR: pointer
+}
+.changSkin {
+	Z-INDEX: 1000; POSITION: absolute; WIDTH: 650px; DISPLAY: none; FLOAT: left; TOP: 40%; LEFT: 20%; panding: 10px
+}
+A {
+	OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: medium; TEXT-DECORATION: none
+}
+A:active {
+	
+}
+:focus {
+	OUTLINE-STYLE: none; OUTLINE-COLOR: invert; OUTLINE-WIDTH: 0px
+}
+#history {
+	OVERFLOW-X: hidden; BACKGROUND-COLOR: #fff; WORD-WRAP: break-word; WORD-BREAK: break-all
+}
+#inputbox {
+	OVERFLOW-X: hidden; WIDTH: 100%; HEIGHT: 80px; wrod-warp: true
+}
+#inputarea {
+	POSITION: relative; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; WIDTH: 100%; PADDING-RIGHT: 0px; FLOAT: left; HEIGHT: 100px; RIGHT: 10px; PADDING-TOP: 0px; TOP: 0px; LEFT: 0px
+}
+.center_left1_container {
+	POSITION: relative; TEXT-ALIGN: left; WIDTH: 100%; HEIGHT: 100%; TOP: 0px; LEFT: 0px
+}
+.topItemsContainer {
+	TEXT-ALIGN: center; MARGIN-TOP: 5px; WIDTH: 75px; DISPLAY: inline; FLOAT: left; HEIGHT: 73px; MARGIN-LEFT: 5px; CURSOR: pointer; _margin-top: 20px
+}
+.containerItemsb {
+	PADDING-BOTTOM: 15px; PADDING-LEFT: 7px; PADDING-RIGHT: 7px; PADDING-TOP: 10px
+}
+.containerItemst {
+	MARGIN-LEFT: 10px
+}
+#jumper {
+	WIDTH: 68px; DISPLAY: block; BACKGROUND: url(images/functions.png) no-repeat 14px 0px; HEIGHT: 48px
+}
+#LMessage {
+	WIDTH: 68px; DISPLAY: block; BACKGROUND: url(images/functions.png) no-repeat 14px -58px; HEIGHT: 48px
+}
+#complaint {
+	WIDTH: 68px; DISPLAY: block; BACKGROUND: url(images/functions.png) no-repeat 14px -116px; HEIGHT: 48px
+}
+#selfSeachService {
+	WIDTH: 68px; DISPLAY: block; BACKGROUND: url(images/functions.png) no-repeat 14px -174px; HEIGHT: 48px
+}
+#intelligentSearch {
+	WIDTH: 68px; DISPLAY: block; BACKGROUND: url(images/functions.png) no-repeat 14px -232px; HEIGHT: 48px
+}
+#newslist {
+	PADDING-BOTTOM: 0px; PADDING-LEFT: 2px; WIDTH: 150px; PADDING-RIGHT: 0px; HEIGHT: 250px; PADDING-TOP: 0px
+}
+.fleft {
+	FLOAT: left; MARGIN-LEFT: 10px
+}
+.fright {
+	FLOAT: right; MARGIN-RIGHT: -10px
+}
+.leftFunc {
+	MARGIN-TOP: 55px; WIDTH: 5px; FLOAT: left; HEIGHT: 73px; CURSOR: pointer; _margin-top: 70px
+}
+.rightFunc {
+	MARGIN-TOP: 55px; WIDTH: 5px; FLOAT: left; HEIGHT: 73px; CURSOR: pointer; _margin-top: 70px
+}
+#content-wrap {
+	TEXT-ALIGN: center; MARGIN: 0px auto; WIDTH: 450px
+}
+#msgcontent {
+	BORDER-BOTTOM: medium none; TEXT-ALIGN: center; BORDER-LEFT: medium none; MARGIN: 0px auto; WIDTH: 450px; BORDER-TOP: medium none; BORDER-RIGHT: medium none
+}
+#bannerBox {
+	MARGIN-TOP: -3px; WIDTH: 149px; HEIGHT: 409px; RIGHT: 0px
+}
+#adArea {
+	WIDTH: 149px; DISPLAY: block; HEIGHT: 160px; CURSOR: pointer
+}

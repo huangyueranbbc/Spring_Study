@@ -1,0 +1,442 @@
+package com.AiQing.MicroMessage.PublicPlatform.action;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Logger;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+
+import net.sf.json.JSONObject;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import com.AiQing.MicroMessage.PublicPlatform.base.Constants;
+import com.AiQing.MicroMessage.PublicPlatform.base.ModelDrivenBaseAction;
+import com.AiQing.MicroMessage.PublicPlatform.model.Articles;
+import com.AiQing.MicroMessage.PublicPlatform.model.Item;
+import com.AiQing.MicroMessage.PublicPlatform.model.ReplyTuwenMessage;
+import com.AiQing.MicroMessage.PublicPlatform.model.WeChatReqBean;
+import com.AiQing.MicroMessage.PublicPlatform.model.WeChatRespBean;
+import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
+
+@Component
+@Scope("prototype")
+public class interfaceAction extends ModelDrivenBaseAction<WeChatReqBean> {
+
+	private static String Token = "aiqing20150715";
+	private static final long serialVersionUID = -2776902810130266533L;
+	private static Logger log = Logger.getLogger(interfaceAction.class
+			.getName());
+
+	public String execute() throws Exception {
+		HttpServletRequest req = ServletActionContext.getRequest();
+		HttpServletResponse resp = ServletActionContext.getResponse();
+
+		String method = req.getMethod();
+		System.out.println(method);
+
+		if (method.equals("POST")) {
+			Scanner scanner = new Scanner(req.getInputStream());
+			resp.setContentType("application/xml");
+			resp.setCharacterEncoding("utf-8");
+			PrintWriter out = resp.getWriter();
+			try {
+				// 1、获取用户发送的信息
+				StringBuffer sb = new StringBuffer(100);
+				while (scanner.hasNextLine()) {
+					sb.append(scanner.nextLine());
+				}
+
+				// 2、解析用户的信息
+				JAXBContext jc = JAXBContext.newInstance(WeChatReqBean.class);
+				Unmarshaller u = jc.createUnmarshaller();
+				WeChatReqBean reqBean = (WeChatReqBean) u
+						.unmarshal(new StringReader(sb.toString()));
+
+				// 获取服务器地址 来获取服务器资源
+				HttpServletRequest httpRequest = ServletActionContext
+						.getRequest();
+
+				String strBackUrl = "http://" + httpRequest.getServerName() // 服务器地址
+						+ ":" + httpRequest.getServerPort() // 端口号
+						+ httpRequest.getContextPath() + "/";
+				log.warning("接受到的" + reqBean.getContent());
+				if (reqBean.getContent().toString().equals("官网")
+						| reqBean.getContent().toString().equals("网址")
+						| reqBean.getContent().toString().equals("网页")) {
+					Item item = new Item();
+					item.setTitle("艾清生物科技有限公司");
+					item.setDescription("公司宗旨：优质，环保，创造品质生活。\n公司发展目标：起步阶段，以黄石作为实体销售主市场，辅助以电商平台为手段，扩大市场占有率，提高品牌认知度；中期面向中部市场，把品牌影响力扩大到中部，巩固并进一步扩大市场份额，提高品牌知名度；公司发展后期致力于深化品牌价值，横纵向扩充日化品牌系列：如香皂、沐浴露、洗发液等，并研发其他种类的中药草日化系列等，我们将以武汉为中心辐射整个中国一二线城市，创立具有中国民族特色的知名日化品牌。");
+					item.setPicUrl(strBackUrl + "wcimages/gw.jpg");
+					item.setUrl(strBackUrl + "homeAction_index");
+					out.write(getReplyTuwenMessage(reqBean.getFromUserName(),
+							reqBean.getToUserName(), item));
+					return null;
+				} else if ((reqBean.getContent().toString().equals("产品介绍"))) {
+					Item item = new Item();
+					item.setTitle("艾清空气清新微乳剂");
+					item.setDescription("我们研制的艾清空气清新微乳剂，系蕲春艾叶经共水蒸馏法提取制得艾叶挥发油及其蒸馏水提物，二者与表面活性剂和助表面活性剂一起微乳化，制得能与水任意比例混合的水基型液体空气清新微乳剂，将此空气清新微乳剂灌装于安全环保的塑料喷雾瓶中，用时轻按，即喷于空中清洁空气。");
+					item.setPicUrl(strBackUrl + "wcimages/cp.png");
+					item.setUrl(strBackUrl + "homeAction_cpjs");
+					out.write(getReplyTuwenMessage(reqBean.getFromUserName(),
+							reqBean.getToUserName(), item));
+					return null;
+				} else if ((reqBean.getContent().toString().equals("艾清"))) {
+					Item item = new Item();
+					item.setTitle("艾清空气清新微乳剂");
+					item.setDescription("我们研制的艾清空气清新微乳剂，系蕲春艾叶经共水蒸馏法提取制得艾叶挥发油及其蒸馏水提物，二者与表面活性剂和助表面活性剂一起微乳化，制得能与水任意比例混合的水基型液体空气清新微乳剂，将此空气清新微乳剂灌装于安全环保的塑料喷雾瓶中，用时轻按，即喷于空中清洁空气。");
+					item.setPicUrl(strBackUrl + "wcimages/cp.png");
+					item.setUrl(strBackUrl + "homeAction_cpjs");
+					out.write(getReplyTuwenMessage(reqBean.getFromUserName(),
+							reqBean.getToUserName(), item));
+					return null;
+				} else if ((reqBean.getContent().toString().equals("工艺流程"))) {
+					Item item = new Item();
+					item.setTitle("工艺流程");
+					item.setDescription("本项目采用了共水蒸馏技术提取艾叶挥发油；采用气相色谱－质谱联用（GC-MS）技术对艾叶挥发油进行成分分析，从而确定艾叶产地；采用微乳化技术制作相图的方法，确定艾叶精油有序分子聚集体微乳液的配比组成，并进行一系列性状、pH、电导率、折光率和粒径的检测，以及高温、低温及常温加速实验考察，确定稳定性较好的最佳组分配方。");
+					item.setPicUrl(strBackUrl + "wcimages/zzlc.jpg");
+					item.setUrl(strBackUrl + "homeAction_gylc");
+					out.write(getReplyTuwenMessage(reqBean.getFromUserName(),
+							reqBean.getToUserName(), item));
+					return null;
+				} else if ((reqBean.getContent().toString().equals("产品专利"))) {
+					Item item = new Item();
+					item.setTitle("产品专利证书");
+					item.setDescription("");
+					item.setPicUrl(strBackUrl + "wcimages/zlzs.png");
+					item.setUrl(strBackUrl + "homeAction_zlzs");
+					out.write(getReplyTuwenMessage(reqBean.getFromUserName(),
+							reqBean.getToUserName(), item));
+					return null;
+				} else if ((reqBean.getContent().toString().equals("团队荣誉"))) {
+					Item item = new Item();
+					item.setTitle("团队荣誉");
+					item.setDescription("王振才，唐云，彭彪，赵阳光，赵帅同学，在湖北理工学院第九届大学生科技文化节“‘挑战杯’大学生课外学术科技作品竞赛（科技小发明）”中《“艾清”空气清新微乳剂》，荣获二等奖。\n"
+							+ "王振才，赵阳光，艾私婷，赵豪，左志闯，殷永锋，商文兵，匡盈，叶良刚，黄磊磊同学，在2014年“创青春 精彩在沃”湖北省大学生创业大赛创业计划赛中,作品《“艾清”空气清新微乳剂》荣获铜奖。\n"
+							+ "赵豪，左志闯，张思远，蔡畅，李昌海，任良钊，王鹏飞同学，在湖北理工学院第十届科技节创意制作大赛中的作品：《医用空气清新剂》，荣获三等奖。\n");
+					item.setPicUrl(strBackUrl + "wcimages/hjzs.png");
+					item.setUrl(strBackUrl + "homeAction_tdry");
+					out.write(getReplyTuwenMessage(reqBean.getFromUserName(),
+							reqBean.getToUserName(), item));
+					return null;
+				} else if ((reqBean.getContent().toString().equals("参考标准"))) {
+					Item item = new Item();
+					item.setTitle("艾清空气清新微乳剂质量参考标准");
+					item.setDescription("艾清空气清新剂产品，对照国家标准和行业标准做了有关项目的检测，参考标准如下：\n"
+							+ "1.中华人民共和国轻工行业标准 QB  空气清新气雾剂\n"
+							+ "2.中华人民共和国环境保护行业标准 HJ 环境标志产品技术要求  气雾剂\n"
+							+ "3.中华人民共和国民用航空行业标准 MH  飞机用空气清新剂\n");
+					item.setPicUrl(strBackUrl + "wcimages/ckbz.png");
+					item.setUrl(strBackUrl + "homeAction_gbhb");
+					out.write(getReplyTuwenMessage(reqBean.getFromUserName(),
+							reqBean.getToUserName(), item));
+					return null;
+				} else if ((reqBean.getContent().toString().equals("问卷调查"))) {
+					Item item = new Item();
+					item.setTitle("艾清空气清新微乳剂");
+					item.setDescription("我们研制的艾清空气清新微乳剂，系蕲春艾叶经共水蒸馏法提取制得艾叶挥发油及其蒸馏水提物，二者与表面活性剂和助表面活性剂一起微乳化，制得能与水任意比例混合的水基型液体空气清新微乳剂，将此空气清新微乳剂灌装于安全环保的塑料喷雾瓶中，用时轻按，即喷于空中清洁空气。");
+					item.setPicUrl(strBackUrl + "wcimages/cp.png");
+					item.setUrl(strBackUrl + "homeAction_cpjs");
+					out.write(getReplyTuwenMessage(reqBean.getFromUserName(),
+							reqBean.getToUserName(), item));
+					log.warning("开始返回xml格式");
+					return null;
+				} else if ((reqBean.getContent().toString().equals("企业动态"))) {
+					Item item = new Item();
+					item.setTitle("企业动态");
+					item.setDescription("我们团队一直秉承优质、环保、创造品质生活的宗旨。团队从2010年起一直从事这方面研究。\n"
+							+ "我们团队的战略目标是成为集研发、生产、销售为一体的高科技专业化企业，并在湖北乃至整个华中市场享有稳定市场份额。\n");
+					item.setPicUrl(strBackUrl + "wcimages/gsdt.jpg");
+					item.setUrl(strBackUrl + "homeAction_scqx");
+					out.write(getReplyTuwenMessage(reqBean.getFromUserName(),
+							reqBean.getToUserName(), item));
+					return null;
+				} else if ((reqBean.getContent().toString().equals("实验数据"))) {
+					Item item = new Item();
+					item.setTitle("艾清空气清新微乳剂实验数据分析");
+					item.setDescription("");
+					item.setPicUrl(strBackUrl + "wcimages/sysj.png");
+					item.setUrl(strBackUrl + "homeAction_sysj");
+					out.write(getReplyTuwenMessage(reqBean.getFromUserName(),
+							reqBean.getToUserName(), item));
+					return null;
+				}
+
+				String content = getContent(reqBean);
+				// 4、创建一个回复消息
+				jc = JAXBContext.newInstance(WeChatRespBean.class);
+				Marshaller m = jc.createMarshaller();
+				m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+				m.setProperty(CharacterEscapeHandler.class.getName(),
+						new CharacterEscapeHandler() {
+							public void escape(char[] arg0, int arg1, int arg2,
+									boolean arg3, Writer arg4)
+									throws IOException {
+								arg4.write(arg0, arg1, arg2);
+							}
+						});
+				m.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
+				WeChatRespBean respBean = createRespBean(reqBean, content);
+				m.marshal(respBean, out);
+				out.flush();
+			} catch (JAXBException e) {
+				log.info(e.getMessage());
+			} finally {
+				if (scanner != null) {
+					scanner.close();
+					scanner = null;
+				}
+				if (out != null) {
+					out.close();
+					out = null;
+				}
+			}
+
+		} else {
+			log.warning("get验证!!!");
+			String signature = req.getParameter("signature");
+			String timestamp = req.getParameter("timestamp");
+			String nonce = req.getParameter("nonce");
+			String echostr = req.getParameter("echostr");
+			// 此处需要检验signature对网址接入合法性进行校验。
+			// 没看出来有什么用，没弄。
+			// 详见：<a
+			// href="http://mp.weixin.qq.com/cgi-bin/readtemplate?t=wxm-callbackapi-doc&lang=zh_CN">文档</a>
+
+			log.warning("信息验证==============" + Token + ":" + signature + " : "
+					+ timestamp + " : " + nonce + " : " + echostr);
+			PrintWriter out = resp.getWriter();
+			if (echostr != null) {
+				out.write(echostr);
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param reqBean
+	 * @param content
+	 * @return
+	 */
+	private WeChatRespBean createRespBean(WeChatReqBean reqBean, String content) {
+		WeChatRespBean respBean = new WeChatRespBean();
+		respBean.setFromUserName(reqBean.getToUserName());
+		respBean.setToUserName(reqBean.getFromUserName());
+		respBean.setMsgType("text");
+		respBean.setCreateTime(new Date().getTime());
+		respBean.setContent(content);
+		return respBean;
+	}
+
+	/**
+	 * @param reqBean
+	 * @throws JAXBException
+	 * @throws IOException
+	 */
+	private String getContent(WeChatReqBean reqBean) throws IOException {
+		StringBuffer content = new StringBuffer();
+		/* 接入机器人 89cb13df63c3ca8026b699eb328efeff 109061 */
+		String APIKEY = "89cb13df63c3ca8026b699eb328efeff";
+		String INFO = URLEncoder.encode(reqBean.getContent(), "utf-8");
+
+		if (reqBean.getMsgType().equals(Constants.MSGTYPE_TEXT)) {
+			/* switch */
+			if (reqBean.getContent().toString().matches("^/.*")) {
+				return "输入help查看帮助";
+			} else if (reqBean.getContent().toString().equals("help")) {
+				log.warning(reqBean.getContent().toString());
+				return "请输入相关指令进行查询:实验数据、问卷调查、参考标准、企业动态、团队荣誉、产品专利、工艺流程、艾清、产品介绍、官网";
+			} else if (reqBean.getContent().toString().equals("做了什么实验?")) {
+				log.warning(reqBean.getContent().toString().equals("做了什么实验?")
+						+ "");
+				log.warning(reqBean.getContent().toString());
+				return "我们做了空气抑菌实验，这款纯天然抑菌空气清新喷雾剂的作用，可与医用紫外线作用相当，还不错吧！欢迎你上网站看看哦！";
+			} else if (reqBean.getContent().toString().equals("实验")) {
+				log.warning(reqBean.getContent().toString());
+				return "我们做了空气抑菌实验，这款纯天然抑菌空气清新喷雾剂的作用，可与医用紫外线作用相当，还不错吧！欢迎你上网站看看哦！";
+			} else if (reqBean.getContent().toString().equals("这能做什么?")) {
+				log.warning(reqBean.getContent().toString());
+				return "我们可是做了很多实验验证的。";
+			} else if (reqBean.getContent().toString().equals("做什么")) {
+				log.warning(reqBean.getContent().toString());
+				return "我们可是做了很多实验验证的。";
+			} else if (reqBean.getContent().toString().equals("这是什么")) {
+				log.warning(reqBean.getContent().toString());
+				return "你好！这是一款纯天然抑菌空气清新喷雾剂。\n" + "它可以很快的改善你学习工作生活空间的空气质量哦！";
+			} else if (reqBean.getContent().toString().equals("这是什么?")) {
+				log.warning(reqBean.getContent().toString());
+				return "你好！这是一款纯天然抑菌空气清新喷雾剂。\n" + "它可以很快的改善你学习工作生活空间的空气质量哦！";
+			} else if (reqBean.getContent().toString().equals("?")) {
+				log.warning(reqBean.getContent().toString());
+				return "你好！这是一款纯天然抑菌空气清新喷雾剂。\n" + "它可以很快的改善你学习工作生活空间的空气质量哦！";
+			} else if (reqBean.getContent().toString().equals("这是什么东西")) {
+				log.warning(reqBean.getContent().toString());
+				return "你好！这是一款纯天然抑菌空气清新喷雾剂。\n" + "它可以很快的改善你学习工作生活空间的空气质量哦！";
+			} else if (reqBean.getContent().toString().equals("这是什么东西?")) {
+				log.warning(reqBean.getContent().toString());
+				return "你好！这是一款纯天然抑菌空气清新喷雾剂。\n" + "它可以很快的改善你学习工作生活空间的空气质量哦！";
+			} else if (reqBean.getContent().toString().equals("不同?")) {
+				log.warning(reqBean.getContent().toString());
+				return "我们 “艾清”空气清新微乳剂有三大的特点\n"
+						+ "(1)安全。由于本空气清新微乳剂配制好后，存放于常压的塑料或玻璃喷瓶中，由于采用常压机械喷雾装置，故不含推进剂，且主要成分为不燃、不爆的水性溶液，故耐高温及碰撞。\n"
+						+ "(2)纯天然、环保。本空气清新剂为主要成分为纯天然中草药，由于产品全部采用天然植物提取物配制而成，不含任何化工原料，不会对空气造成任何二次污染。\n"
+						+ "(3)抑菌。产品主要成分为艾叶挥发油，故具有祛痰、止咳、平喘、祛风、解热、镇痛、抗菌消炎、抗病毒等作用，所以在其洁净空气同时，还提神醒脑清香空气，这也是为什么中国端午节家家户户挂艾叶的习俗能流传至今的缘由。";
+			} else if (reqBean.getContent().toString()
+					.equals("你们产品与其他空气清新产品有什么不同?")) {
+				log.warning(reqBean.getContent().toString());
+				return "我们 “艾清”空气清新微乳剂有三大的特点\n"
+						+ "(1)安全。由于本空气清新微乳剂配制好后，存放于常压的塑料或玻璃喷瓶中，由于采用常压机械喷雾装置，故不含推进剂，且主要成分为不燃、不爆的水性溶液，故耐高温及碰撞。\n"
+						+ "(2)纯天然、环保。本空气清新剂为主要成分为纯天然中草药，由于产品全部采用天然植物提取物配制而成，不含任何化工原料，不会对空气造成任何二次污染。\n"
+						+ "(3)抑菌。产品主要成分为艾叶挥发油，故具有祛痰、止咳、平喘、祛风、解热、镇痛、抗菌消炎、抗病毒等作用，所以在其洁净空气同时，还提神醒脑清香空气，这也是为什么中国端午节家家户户挂艾叶的习俗能流传至今的缘由。";
+			} else {
+
+				/**
+				 * 图灵机器人
+				 * */
+				log.warning("进入机器人");
+
+				String getURL = "http://www.tuling123.com/openapi/api?key="
+						+ APIKEY + "&info=" + INFO;
+				URL getUrl = new URL(getURL);
+				HttpURLConnection connection = (HttpURLConnection) getUrl
+						.openConnection();
+				connection.connect(); // 取得输入流，并使用Reader读取
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(connection.getInputStream(),
+								"utf-8")); //
+				StringBuffer sb = new StringBuffer();
+				String line = "";
+				while ((line = reader.readLine()) != null) {
+					content.append(line);
+				}
+
+				JSONObject dataJson = JSONObject.fromObject(content.toString());
+				String text = dataJson.get("text").toString();
+				reader.close(); // 断开连接
+				connection.disconnect();
+				log.warning("机器人连接结束"+text);
+				return text;
+
+			}
+		}
+		/* ==============================结束============================== */
+		return "输入help查看帮助end";
+	}
+
+	// 回复图文消息
+	private String getReplyTuwenMessage(String fromUserName, String toUserName,
+			Item item) {
+
+		ReplyTuwenMessage we = new ReplyTuwenMessage();
+		Articles articles = new Articles();
+		we.setMessageType("news");
+		we.setCreateTime(new Long(new Date().getTime()).toString());
+		we.setToUserName(fromUserName);
+		we.setFromUserName(toUserName);
+		we.setFuncFlag("0");
+		we.setArticleCount(1);
+
+		articles.setItem(item);
+		we.setArticles(articles);
+
+		XStream xstream = new XStream(new DomDriver());
+		xstream.alias("xml", ReplyTuwenMessage.class);
+		xstream.aliasField("ToUserName", ReplyTuwenMessage.class, "toUserName");
+		xstream.aliasField("FromUserName", ReplyTuwenMessage.class,
+
+		"fromUserName");
+		xstream.aliasField("CreateTime", ReplyTuwenMessage.class, "createTime");
+		xstream.aliasField("MsgType", ReplyTuwenMessage.class, "messageType");
+		xstream.aliasField("Articles", ReplyTuwenMessage.class, "Articles");
+
+		xstream.aliasField("ArticleCount", ReplyTuwenMessage.class,
+
+		"articleCount");
+		xstream.aliasField("FuncFlag", ReplyTuwenMessage.class, "funcFlag");
+
+		xstream.aliasField("item", Articles.class, "item");
+
+		xstream.aliasField("Title", Item.class, "title");
+		xstream.aliasField("Description", Item.class, "description");
+		xstream.aliasField("PicUrl", Item.class, "picUrl");
+		xstream.aliasField("Url", Item.class, "url");
+
+		String xml = xstream.toXML(we);
+		return xml;
+	}
+
+	// 回复图文消息
+	@SuppressWarnings("unused")
+	private String getReplyDuoTuwenMessage(String fromUserName,
+			String toUserName, List<Item> items) {
+
+		ReplyTuwenMessage we = new ReplyTuwenMessage();
+
+		we.setMessageType("news");
+		we.setCreateTime(new Long(new Date().getTime()).toString());
+		we.setToUserName(fromUserName);
+		we.setFromUserName(toUserName);
+		we.setFuncFlag("0");
+		we.setArticleCount(items.size());
+		// item.setTitle("俊介");
+		// item.setDescription("俊介（SHUNSUKE）是Twitter上现在最流行的偶像犬，是哈多利系博美犬（即俗称英系博美），因为在网上卖萌而走红网络。");
+		// item.setPicUrl("http://www.jpcai.com/upfiles/photo/200606/20060624165436769.jpg");
+		// item.setUrl("http://baike.baidu.com/view/6300265.htm");
+		List<Articles> articleList = new ArrayList<Articles>();
+		for (Item item : items) {
+			Articles articles = new Articles();
+			articles.setItem(item);
+			articleList.add(articles);
+		}
+		// we.setArticles(articleList);
+
+		XStream xstream = new XStream(new DomDriver());
+		xstream.alias("xml", ReplyTuwenMessage.class);
+		xstream.aliasField("ToUserName", ReplyTuwenMessage.class, "toUserName");
+		xstream.aliasField("FromUserName", ReplyTuwenMessage.class,
+
+		"fromUserName");
+		xstream.aliasField("CreateTime", ReplyTuwenMessage.class, "createTime");
+		xstream.aliasField("MsgType", ReplyTuwenMessage.class, "messageType");
+		xstream.aliasField("Articles", ReplyTuwenMessage.class, "Articles");
+
+		xstream.aliasField("ArticleCount", ReplyTuwenMessage.class,
+
+		"articleCount");
+		xstream.aliasField("FuncFlag", ReplyTuwenMessage.class, "funcFlag");
+
+		xstream.aliasField("item", Articles.class, "item");
+
+		xstream.aliasField("Title", Item.class, "title");
+		xstream.aliasField("Description", Item.class, "description");
+		xstream.aliasField("PicUrl", Item.class, "picUrl");
+		xstream.aliasField("Url", Item.class, "url");
+
+		String xml = xstream.toXML(we);
+		return xml;
+	}
+
+}

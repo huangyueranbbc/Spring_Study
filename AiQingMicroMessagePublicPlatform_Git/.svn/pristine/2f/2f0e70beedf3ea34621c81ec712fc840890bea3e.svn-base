@@ -1,0 +1,87 @@
+package com.AiQing.MicroMessage.PublicPlatform.action;
+
+import java.io.OutputStream;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import com.AiQing.MicroMessage.PublicPlatform.base.ModelDrivenBaseAction;
+import com.AiQing.MicroMessage.PublicPlatform.dto.OrderDto;
+import com.AiQing.MicroMessage.PublicPlatform.model.AlipayOrder;
+import com.AiQing.MicroMessage.PublicPlatform.model.Goods;
+import com.AiQing.MicroMessage.PublicPlatform.model.Order;
+import com.opensymphony.xwork2.ActionContext;
+
+@Component
+@Scope("prototype")
+public class orderAction extends ModelDrivenBaseAction<OrderDto> {
+	/**
+	 * 确认订单
+	 * */
+	public String qrdd() throws Exception {
+		Goods goods = goodsService.getById(Long.parseLong("1"));
+
+		// TODO 这只是暂时的 后期加入用户表 需要参照用户逻辑
+		modeldto.setLastsum(modeldto.getSum());
+		System.out.println(modeldto.getLastsum());
+		return "qrdd";
+	}
+
+	/**
+	 * 选择支付方式
+	 * */
+	public String xzzffs() throws Exception {
+		Goods goods = goodsService.getById(Long.parseLong("1"));
+		System.out.println("传入的订单数量为:" + modeldto.getSum());
+		System.out.println(goods.getPrice());
+		double price = modeldto.getSum() * goods.getPrice();
+
+		Order order = new Order();
+		order.setDate(new Date());
+		order.setSum(modeldto.getSum());
+		order.setDes(goods.getName() + "订单");
+		order.setOrdernum(Calendar.getInstance().getTimeInMillis() + "");
+		order.setPrice(price);
+		orderService.save(order);
+		
+		modeldto.setId(order.getId());
+		ActionContext.getContext().getValueStack().push(order);
+		// TODO 这只是暂时的 后期加入用户表 需要参照用户逻辑
+		
+		return "xzzffs";
+	}
+
+	/**
+	 * 进行购买
+	 * */
+	public String buy() throws Exception {
+		System.out.println("得到的ID为：" + modeldto.getId());
+		Order order = orderService.getById(modeldto.getId());
+		// 获得订单的信息
+		
+		
+		// 进行交易
+		AlipayOrder alipayOrder=new AlipayOrder();
+		
+		alipayOrder.setWIDbody("艾清"+":"+order.getSum()+":"+order.getPrice()+":"+order.getOrdernum());
+		alipayOrder.setWIDdefaultbank("CMB");
+		alipayOrder.setWIDout_trade_no(order.getOrdernum());
+		alipayOrder.setWIDseller_email("18271683974@163.com");
+		alipayOrder.setWIDshow_url("http://atl520.jsp.fjjsp.net/aq/homeAction_cpdg");
+		alipayOrder.setWIDsubject("艾清"+order.getDate());
+		alipayOrder.setWIDtotal_fee(order.getPrice());
+		
+		
+		ActionContext.getContext().getValueStack().push(alipayOrder);
+		// 传递参数 进入支付宝交易
+		//目前还是test阶段
+		return "zfbtest";
+	}
+	
+}

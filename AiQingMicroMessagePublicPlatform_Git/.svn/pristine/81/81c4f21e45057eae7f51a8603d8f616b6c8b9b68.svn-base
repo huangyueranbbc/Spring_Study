@@ -1,0 +1,32 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!-- ******************* start header   *********************** -->
+<DIV class="pft">
+	<DIV class="main">
+		<DIV class="mod-links">
+			<DIV id="pcont" class="pft-slider">
+				<DIV class="pc-nav">
+					<DIV class="nav-box">
+						<DIV id="nav-wrap" class="nav-wrap">
+							<A href="javascript:;">1</A><A href="javascript:;">2</A>
+						</DIV>
+					</DIV>
+				</DIV>
+				<DIV class="pc-cont"></DIV>
+			</DIV>
+			<!--底部菜单 滚动LOGO-->
+			<P class="b_line">
+				<A href="homeAction_index" target="_blank">艾清生物科技有限公司集团</A><A
+					href="homeAction_qqkf" target="_blank">联系我们</A><A
+					href="javascript:addfav();">收藏本站</A>
+			</P>
+			<P class="b_line">
+				<A href="http://www.saic.gov.cn/" target="_blank">国家工商总局直销行业管理</A><A
+					href="https://gbss.infinitus.com.cn/gbss-query/admin/gbss-query-admin/qualityRepor/dealerLogin"
+					target="_blank">产品批次报告查询</A>
+			</P>
+			<!--底部菜单 底部菜单-->
+		</DIV>
+		<!--底部菜单 底部菜单-->
+	</DIV>
+</DIV>

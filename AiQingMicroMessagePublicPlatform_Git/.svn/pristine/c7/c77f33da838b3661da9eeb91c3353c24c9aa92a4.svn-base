@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="AiQingMicroMessagePublicPlatform01"
+  id="myeclipse.1437107819684"
+  context-root="/aq"
+  j2ee-spec="6.0"
+  archive="AiQingMicroMessagePublicPlatform01.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

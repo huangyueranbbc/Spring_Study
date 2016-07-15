@@ -1,0 +1,91 @@
+@charset "utf-8";
+/* CSS Document */
+
+.mhd h3 {background: url(../images/jkrs_mhd.png) 0 0 no-repeat;}
+.mod-menu .mhd h3 {background: url(../images/pbd_inner_menu.png) 0 0 no-repeat;}
+.mod-menu2 .mhd h3 {background: url(../images/pbd_inner_menu2.png) 0 0 no-repeat;}
+.mod-content {_height: 1000px; min-height: 1000px;}
+.mod-content h1{ font-size:23px; font-weight:500; color:#3a3a3a;}
+.my-mod-content h1{ font-size:23px; font-weight:500; color:#3a3a3a;} 
+
+/*pbd-inner*/
+.pbd-inner .pt-main {float: left; width: 685px; overflow: hidden; background-color: #fff;}
+.sphred {border-bottom: 6px solid #d40b07;}
+.pbd-inner .pt-extra {float: right; position: relative; overflow: hidden; width: 315px; padding-bottom: 50px;}
+.pbd-inner .pt-extra .arrow {position: absolute; left: -1px; top: 64px; width: 18px; height: 31px; background: url(../images/pbd_inner_arrow.png) 0 0 no-repeat; z-index: 100;}
+
+.main-inner {background-color: #f1efed;}
+.picShow {width: 639px; height: 259px; border: 1px solid #e6e5e2; margin: 31px 18px 29px;}
+.picShow img {width: 639px; height: 259px;}
+
+/*pt-main*/
+.mod-content .mhd {position: relative; overflow: hidden; border-bottom: 1px dashed #e6e5e2; margin: 32px 0 0 18px;}
+.mod-content .mhd h1 {padding: 0 0 18px 32px; 	background: url(../images/tit-bg.png) no-repeat;}
+.mod-content .mbd {position: relative; padding: 25px 52px 32px 40px; }
+
+.mod-content .share {margin-top: 50px;padding-top: 20px;float: right;}
+.mod-content .btn {margin: 20px 0 38px;}
+.mod-content .btn a {display: block; width: 47px; height: 29px; padding-left: 8px; border-left: 22px solid #d40b07; background-color: #e4e3e3; line-height: 29px;}
+
+/*pt-extra*/
+.mod-menu .mhd {padding: 62px 0 42px 38px; border-bottom: 2px solid #db6462;}
+.mod-menu .mhd h1 {width: 230px; height: 72px;}
+.mod-menu .mbd {padding: 16px 0 0;}
+.sub-menu li {height: 48px; padding-left: 38px; background: url(../images/dash_line.png) 0 bottom no-repeat; line-height: 46px;}
+.sub-menu li a {color: #4c4b4a;}
+.sub-menu li .on, .sub-menu li a:hover {color: #d91217;}
+
+/*pbd-dszdh*/
+.pbd-dszdh .pt-main {background-color: #C7C4C4;}
+.pbd-dszdh .mod-menu .mhd h3 {height: 105px; background: url(../images/dszde_mhd.png) 0 0 no-repeat;}
+.pbd-dszdh .mod-menu .mhd {border-bottom: none;}
+.pbd-dszdh .mod-content .mbd {padding: 71px 54px 0; border-bottom: none;}
+.pbd-dszdh .pt-extra .arrow {background-position: 0 -31px;}
+.pbd-dszdh .pt-extra .quota {position: absolute; left:0; top: 330px; width: 20px; padding: 8px 7px; background-color: #d40b07; color: #fff;}
+.pbd-dszdh .quota .icon {display: block; height: 20px; background: url(../images/icon5_inner.png) 0 0 no-repeat;}
+.pbd-dszdh .quota .body {padding: 0 1px;}
+.pbd-dszdh .quota .body a {color: #fff;}
+.pbd-dszdh .quota .body a:hover {text-decoration:none;}
+.pbd-dszdh .mod-content .prev, .pbd-dszdh .mod-content .next {display: block; background: url(../images/pbd_inner_icon.png) 0 0 no-repeat;}
+.pbd-dszdh .mod-content .prev {position: absolute; top: 240px; left: 55px; width: 16px; height: 28px;}
+.pbd-dszdh .mod-content .next {position: absolute; top: 240px; right: 55px; width: 16px; height: 28px; background-position: 0 -29px;}
+.pbd-dszdh .mod-content .prev:hover {background-position: 0 -58px;text-decoration:none;}
+.pbd-dszdh .mod-content .next:hover {background-position: 0 -87px;text-decoration:none;}
+.pbd-dszdh .page {padding-top: 20px;}
+.pbd-dszdh .page a{display: inline-block; float:none;background: url(../images/page_icon2.png) 0 0 no-repeat;}
+.pbd-dszdh .page span{display: none;}
+.pbd-dszdh .page a.hover {background: url(../images/page_icon1.png) 0 0 no-repeat;}
+.art-list {padding: 30px 66px;}
+.art-list li {float: left; overflow: hidden; width: 200px; padding-right: 10px; line-height: 25px;}
+.art-list p{float: left;width: 100%;margin: 0;}
+.art-list a {padding-left: 30px; color: #252525;}
+.art-list a:hover,.art-list .now {background: url(../images/icon3.png) 0 center no-repeat;color: #D40B07;}
+.intr {width: 216px; margin: 0 auto;}
+.intr .pic {margin: 0 auto 10px;}
+.intr .avatar .pic {width: 140px;}
+.intr .weixin {margin-top: 300px;}
+.intr .weixin .pic {width: 84px;}
+.intr .weixin .pic img {width: 84px; height: 81px;}
+.intr p {text-align: center;}
+
+
+/*pbd-dszdh2*/
+.pbd-dszdh2 .pt-main {background-color: #fff;}
+.pbd-dszdh2 .pt-main .time {padding-left: 33px; color: #8e8e8e;}
+.pbd-dszdh2 .page a{background:url(../images/pichover.png) no-repeat 0 -39px;}
+.pbd-dszdh2 .page a.hover{ background:url(../images/pichover.png) no-repeat;}
+.pbd-dszdh2 .pt-extra .arrow {background-position: 0 0;}
+.pbd-dszdh2 .mod-content .tools {top: 30px;}
+.pbd-dszdh2 .mod-content .mhd {margin: 22px 0 0 18px;}
+.pbd-dszdh2 .mod-content .mbd {padding: 35px 54px 0;}
+.pbd-dszdh2 #bdshare {float: right;}
+
+.article-nav {padding: 10px 120px 0 20px; border-top: 1px dashed #cbc8c8; margin-top: 18px;}
+.article-nav li {padding-left: 35px; background: url(../images/icon9.png) 0 28px no-repeat;}
+.article-nav .page-next {margin-bottom: 20px; }
+.article-nav .page-title {margin-bottom: 5px; font-size: 20px;}
+.article-nav .disable {color: #bababa;}
+
+.pbd-qywh .mod-menu .mhd h3 {
+    /*background: url(../images/zjwxj_mhd.png) 0 0 no-repeat;*/
+}

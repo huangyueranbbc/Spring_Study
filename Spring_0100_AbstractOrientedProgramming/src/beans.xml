@@ -1,0 +1,7 @@
+<beans>
+	<bean id="u" class="com.hyr.dao.implement.UserDAOORACLEImplement" />
+	<bean id="userService" class="com.hyr.service.UserService" >
+		<property name="userDAO" bean="u" />
+	</bean> 
+	
+</beans>
